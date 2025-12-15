@@ -1,0 +1,25 @@
+// Docks the chat bar and user section
+
+// user section
+section[class*="panels"]
+	--custom-panels-spacing: 0px
+	border-radius: 0
+
+	border-width: 0px
+	border-top-width: 1px
+
+	// make it match the chat bar
+	background: var(--background-gradient-highest,var(--chat-background-default))
+
+// chat box
+main > form[class] // [class] is a specificity increaser
+	--custom-chat-input-margin-bottom: 0px
+	padding-inline: 0px
+	--radius-sm: 0px
+
+	[class*=channelTextArea]
+		border-width: 0px
+		border-top-width: 1px
+
+		// basically remove hover style
+		border-color: var(--border-muted) !important

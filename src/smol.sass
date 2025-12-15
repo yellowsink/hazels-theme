@@ -1,0 +1,20 @@
+// reduces some margins / paddings in a few places
+
+// loosely based on the very old SmolCord I made for Diskai:
+// https://github.com/sink-cord-archive/SmolCord/blob/master/smol.theme.css
+
+// but not really
+// and also very wip and basically not done at all atp.
+
+// channel list
+[data-list-item-id^=channels][role=link]
+	border-radius: 0px
+	padding-inline-start: calc(2 * var(--space-xs))
+
+	li > div:has(&)
+		margin-inline: 0px
+
+// forum channel entries
+[role=listitem] [data-list-item-id^=channels]
+	border-top-right-radius: 0px
+	border-bottom-right-radius: 0px

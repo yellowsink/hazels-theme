@@ -1,0 +1,62 @@
+/*
+	@name Hazel's Theme
+	@author Yellowsink
+	@description A small Discord theme that matches Hazel's wants.
+	@version 0.0.1
+	@source https://github.com/yellowsink/hazels-theme
+
+
+@use "src/smol"
+@use "src/docked-chat-bar"
+@use "src/colors"
+
+.theme-dark
+
+	// a crapton of miscellaneous stuff such as the "higher" colours uses this
+	// and just kinda set by eye to look good
+	--custom-theme-base-color: #{colors.$theme-colour-override-base}
+	--custom-theme-base-color-hsl: #{colors.hsl_of(colors.$theme-colour-override-base)}
+	--custom-theme-base-color-amount: 100%
+
+	--custom-theme-text-color: #{colors.$theme-colour-override-text}
+	--custom-theme-base-color-hsl: #{colors.hsl_of(colors.$theme-colour-override-text)}
+	--custom-theme-text-color-amount: 30%
+
+	// app background
+	// taken from catppuccin
+	--background-base-lowest: #{colors.$catppuccin-darkest}
+	--background-base-lower: #{colors.$catppuccin-darker}
+	--background-base-low: #{colors.$catppuccin-dark}
+
+	// chatbar
+	--chat-background-default: var(--background-base-low)
+
+.theme-dark, .theme-light
+	// brurpl... the pur pl,, pruple.;
+	--control-primary-background-default: #{colors.monokai-purple()}
+	--control-primary-background-hover: #{colors.monokai-purple(-5%)}
+	--control-primary-background-active: #{colors.monokai-purple(-15%)}
+
+	--control-critical-primary-background-default: #{colors.monokai-red()}
+	--control-critical-primary-background-hover: #{colors.monokai-red(-5%)}
+	--control-critical-primary-background-active: #{colors.monokai-red(-15%)}
+
+	--control-critical-secondary-text-default: #{colors.monokai-red()}
+	--control-critical-secondary-text-hover: #{colors.monokai-red()}
+	--control-critical-secondary-text-active: #{colors.monokai-red()}
+
+	--text-brand: #{colors.monokai-purple()}
+	--text-link: #{colors.monokai-purple(+10%)}
+
+	--background-brand: #{colors.monokai-purple()}
+
+	--text-feedback-critical: #{colors.monokai-red()}
+
+
+// switches
+[data-toggleable-component="switch"][class*=checked]
+	background-color: colors.monokai-purple() !important
+
+// server pills
+[class*=listItem] > [class*=pill] > span
+	background-color: colors.catppuccin-accent()

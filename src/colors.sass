@@ -1,0 +1,32 @@
+@use "sass:math"
+@use "sass:color"
+
+@function light_mod($base_col, $mod, $sat_mod_factor: 2)
+	@return color.adjust($base_col,
+		$lightness: $mod,
+		$saturation: $mod * $sat_mod_factor
+	)
+
+// `xxxdeg yyy% zzz%` format from any colour
+@function hsl_of($col)
+	$h: color.channel($col, "hue", hsl)
+	$s: color.channel($col, "saturation", hsl)
+	$l: color.channel($col, "lightness", hsl)
+	@return $h $s $l
+
+$catppuccin-dark: #1E1E2E
+$catppuccin-darker: #1A1826
+$catppuccin-darkest: #161320
+
+// dialed in by eye
+$theme-colour-override-base: #100c23
+$theme-colour-override-text: #a69ed2
+
+@function catppuccin-accent($l_mod: 0%)
+	@return light_mod(#F28FAD, $l_mod)
+
+@function monokai-purple($lightness_mod: 0%)
+	@return light_mod(#9d65ff, $lightness_mod)
+
+@function monokai-red($lightness_mod: 0%)
+	@return light_mod(#f4005f, $lightness_mod)

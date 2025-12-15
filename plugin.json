@@ -1,0 +1,6 @@
+{
+	"//": "this is for shelter hot reload, see index.js",
+	"name": "Hazel's Theme",
+	"author": "Yellowsink",
+	"description": "Hot Reload plugin for theme dev on shelter"
+}
