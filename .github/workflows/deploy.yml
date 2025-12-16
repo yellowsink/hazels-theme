@@ -34,8 +34,7 @@ jobs:
                       rm -rf $item
                     fi
                   done
-                  rm .gitignore
-                  rm -rf .github
+                  rm -rf .github .editorconfig index.js plugin.json
 
                   mv .dist/* .
                   rmdir .dist
