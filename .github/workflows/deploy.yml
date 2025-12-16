@@ -1,52 +1,46 @@
 name: Build and deploy
 
 on:
-    push:
-        branches: [master]
+  push:
+    branches: [master]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Prepare environment
-              uses: actions/setup-node@v2
-              with:
-                  node-version: "25"
+      - name: Prepare environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "25"
 
-            - run: npm install --global sass
+      - run: npm install --global sass
 
-            - name: Build theme
-              run: sass hazels-theme.theme.sass .dist/hazels-theme.theme.css
+      - name: Build theme
+        run: sass hazels-theme.theme.sass .dist/hazels-theme.theme.css
 
-            - name: Copy manifests
-              run: |
-                  cp cumcord_theme.json .dist
+      - name: Copy manifests
+        run: |
+          cp cumcord_theme.json .dist
 
-              # remove everything except `.dist`, then move stuff back into root.
-            - name: Commit changes
-              run: |
-                  for item in *
-                  do
-                    if [ $item != ".dist" ]; then
-                      rm -rf $item
-                    fi
-                  done
-                  rm -rf .github .editorconfig index.js plugin.json
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-                  mv .dist/* .
-                  rmdir .dist
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: ".dist"
 
-                  git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                  git config --local user.name "github-actions[bot]"
-                  git add .
-                  git commit -am "[CI CHORE] Build update"
-
-            - name: Push to dist branch
-              uses: ad-m/github-push-action@master
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: "dist"
-                  force: true
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
