@@ -18,3 +18,12 @@
 [role=listitem] [data-list-item-id^=channels]
 	border-top-right-radius: 0px
 	border-bottom-right-radius: 0px
+
+// dm list
+li:has(> div > [data-list-item-id^=private-channels])
+	border-top-right-radius: 0px
+	border-bottom-right-radius: 0px
+
+// channel header
+:root
+	--custom-channel-header-height: 35px
