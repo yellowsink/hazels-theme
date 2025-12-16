@@ -19,7 +19,7 @@ jobs:
             - run: npm install --global sass
 
             - name: Build theme
-              run: sass hazels-theme.theme.scss .dist/hazels-theme.theme.css
+              run: sass hazels-theme.theme.sass .dist/hazels-theme.theme.css
 
             - name: Copy manifests
               run: |
