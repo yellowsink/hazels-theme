@@ -14,6 +14,11 @@
 	li > div:has(&)
 		margin-inline: 0px
 
+	// unread channel items
+	[class*=modeUnreadImportant] > div > &
+		& > div > *, svg
+			color: var(--text-link)
+
 // forum channel entries
 [role=listitem] [data-list-item-id^=channels]
 	border-top-right-radius: 0px
